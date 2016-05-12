@@ -167,11 +167,6 @@ public class Main {
   }
 
   private void rotateDominoes() {
-    // for (Domino d : dominoes) {
-    // if (Math.random() > 0.5) {
-    // System.out.println("rotating " + d);
-    // }
-    // }
     for (int x = 0; x < 7; x++) {
       for (int y = 0; y < 6; y++) {
 
@@ -365,7 +360,6 @@ public class Main {
           shuffleDominoesOrder();
           placeDominoes();
           collateGrid();
-          // printGrid();
           break;
         case 2:
           generateDominoes();
@@ -373,7 +367,6 @@ public class Main {
           placeDominoes();
           rotateDominoes();
           collateGrid();
-          // printGrid();
           break;
         default:
           generateDominoes();
@@ -885,5 +878,5 @@ public class Main {
       pf.dp.drawDomino(g, d);
     }
   }
-  //1108975
+
 }
