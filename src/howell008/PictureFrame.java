@@ -10,7 +10,7 @@ import javax.swing.*;
 public class PictureFrame {
   public int[] reroll = null;
   public Main master = null;
-
+  private int radius=0;
   class DominoPanel extends JPanel {
     private static final long serialVersionUID = 4190229282411119364L;
 
@@ -53,7 +53,7 @@ public class PictureFrame {
     }
 
     void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int n) {
-      int radius = diameter / 2;
+      radius = diameter / 2;
       g.setColor(Color.BLACK);
       // g.drawOval(x - radius, y - radius, diameter, diameter);
       FontMetrics fm = g.getFontMetrics();
@@ -64,7 +64,7 @@ public class PictureFrame {
 
     void drawDigitGivenCentre(Graphics g, int x, int y, int diameter, int n,
         Color c) {
-      int radius = diameter / 2;
+      radius = diameter / 2;
       g.setColor(c);
       // g.drawOval(x - radius, y - radius, diameter, diameter);
       FontMetrics fm = g.getFontMetrics();
@@ -73,7 +73,7 @@ public class PictureFrame {
     }
 
     void fillDigitGivenCentre(Graphics g, int x, int y, int diameter, int n) {
-      int radius = diameter / 2;
+      radius = diameter / 2;
       g.setColor(Color.GREEN);
       g.fillOval(x - radius, y - radius, diameter, diameter);
       g.setColor(Color.BLACK);
@@ -111,7 +111,7 @@ public class PictureFrame {
 
   public DominoPanel dp;
 
-  public void PictureFrame(Main sf) {
+  public PictureFrame(Main sf) {
     master = sf;
     if (dp == null) {
       JFrame f = new JFrame("Abominodo");
