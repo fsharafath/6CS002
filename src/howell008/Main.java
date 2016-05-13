@@ -775,9 +775,9 @@ public class Main {
         }
         try {
           DateFormat ft = DateFormat.getDateInstance(DateFormat.LONG);
-          BufferedReader r = new BufferedReader(new FileReader(f));
+          BufferedReader readfile = new BufferedReader(new FileReader(f));
           while (ConValue == 1) {
-            String lin = r.readLine();
+            String lin = readfile.readLine();
             if (lin == null || lin.length() == 0)
               break;
             String[] parts = lin.split(",");
@@ -785,12 +785,11 @@ public class Main {
                 .format(new Date(Long.parseLong(parts[2]))));
 
           }
-
+          readfile.close();
         } catch (Exception e) {
           System.out.println("Malfunction!!");
           System.exit(0);
         }
-
       }
         break;
 
