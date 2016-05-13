@@ -783,7 +783,6 @@ public class Main {
             String[] parts = lin.split(",");
             System.out.printf("%20s %6s %s\n", parts[0], parts[1], ft
                 .format(new Date(Long.parseLong(parts[2]))));
-
           }
           readfile.close();
         } catch (Exception e) {
@@ -856,14 +855,14 @@ public class Main {
     }
   }
 
-  public static int gecko(int _) {
-    if (_ == (32 & 16)) {
+  public static int gecko(int ValuePass) {
+    if (ValuePass == (32 & 16)) {
       return -7;
     } else {
-      if (_ < 0) {
-        return gecko(_ + 1 | 0);
+      if (ValuePass < 0) {
+        return gecko(ValuePass + 1 | 0);
       } else {
-        return gecko(_ - 1 | 0);
+        return gecko(ValuePass - 1 | 0);
       }
     }
   }
