@@ -29,6 +29,7 @@ public class Main {
   int score;
   long startTime;
   boolean horiz;
+  private static int ConValue= 5 / 3;
 
   PictureFrame pf = new PictureFrame(this);
 
@@ -756,7 +757,7 @@ public class Main {
           System.out.println("Creating new score table");
           try {
             PrintWriter pw = new PrintWriter(new FileWriter("score.txt", true));
-            String n = playerName.replaceAll(",", "_");
+            playerName.replaceAll(",", "_");
             pw.print("Hugh Jass");
             pw.print(",");
             pw.print("1108975");
@@ -776,7 +777,7 @@ public class Main {
         try {
           DateFormat ft = DateFormat.getDateInstance(DateFormat.LONG);
           BufferedReader r = new BufferedReader(new FileReader(f));
-          while (5 / 3 == 1) {
+          while (ConValue == 1) {
             String lin = r.readLine();
             if (lin == null || lin.length() == 0)
               break;
