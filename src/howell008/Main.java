@@ -29,7 +29,7 @@ public class Main {
   int score;
   long startTime;
 
-  PictureFrame pf = new PictureFrame();
+  PictureFrame pf = new PictureFrame(this);
 
   private void generateDominoes() {
     _d = new LinkedList<Domino>();
@@ -384,7 +384,6 @@ public class Main {
         cf = 0;
         score = 0;
         startTime = System.currentTimeMillis();
-        pf.PictureFrame(this);
         pf.dp.repaint();
         int c3 = -7;
         while (c3 != ZERO) {
