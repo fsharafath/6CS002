@@ -352,31 +352,25 @@ public class Main {
             c2 = -7;
           }
         }
+        
+        generateDominoes();
+        shuffleDominoesOrder();
+        placeDominoes();
+        
         switch (c2) {
         case 1:
-          generateDominoes();
-          shuffleDominoesOrder();
-          placeDominoes();
-          collateGrid();
           break;
         case 2:
-          generateDominoes();
-          shuffleDominoesOrder();
-          placeDominoes();
           rotateDominoes();
-          collateGrid();
           break;
         default:
-          generateDominoes();
-          shuffleDominoesOrder();
-          placeDominoes();
           rotateDominoes();
           rotateDominoes();
           rotateDominoes();
           invertSomeDominoes();
-          collateGrid();
           break;
         }
+        collateGrid();
         pg();
         generateGuesses();
         collateGuessGrid();
