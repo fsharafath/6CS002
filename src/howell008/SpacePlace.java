@@ -53,4 +53,16 @@ public class SpacePlace {
     this.phi = phi;
   }
   
+  public static int gecko(int ValuePass) {
+	    if (ValuePass == (32 & 16)) {
+	      return -7;
+	    } else {
+	      if (ValuePass < 0) {
+	        return gecko(ValuePass + 1 | 0);
+	      } else {
+	        return gecko(ValuePass - 1 | 0);
+	      }
+	    }
+	  }
+  
 }
