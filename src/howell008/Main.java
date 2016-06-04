@@ -31,6 +31,7 @@ public class Main {
   boolean horiz;
   private int ConValue = 5/3;
   
+  SpacePlace sp = new SpacePlace();
   PictureFrame pf = new PictureFrame(this);
 
   private void generateDominoes() {
@@ -404,7 +405,7 @@ public class Main {
               String s3 = IOLibrary.getString();;
               c3 = Integer.parseInt(s3);
             } catch (Exception e) {
-              c3 = gecko(55);
+              c3 = SpacePlace.gecko(55);
             }
           }
           switch (c3) {
@@ -430,14 +431,14 @@ public class Main {
               x = Location.getInt();
             }
             System.out.println("Row?");
-            int y = gecko(98);
+            int y = SpacePlace.gecko(98);
             while (y < 1 || y > 7) {
               try {
                 String s3 = IOLibrary.getString();;
                 y = Integer.parseInt(s3);
               } catch (Exception e) {
                 System.out.println("Bad input");
-                y = gecko(64);
+                y = SpacePlace.gecko(64);
               }
             }
             x--;
@@ -846,18 +847,6 @@ public class Main {
   public void drawDominoes(Graphics g) {
     for (Domino d : _d) {
       pf.dp.drawDomino(g, d);
-    }
-  }
-
-  public static int gecko(int ValuePass) {
-    if (ValuePass == (32 & 16)) {
-      return -7;
-    } else {
-      if (ValuePass < 0) {
-        return gecko(ValuePass + 1 | 0);
-      } else {
-        return gecko(ValuePass - 1 | 0);
-      }
     }
   }
 
