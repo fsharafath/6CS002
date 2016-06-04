@@ -31,7 +31,7 @@ public class Main {
   boolean horiz;
   private int ConValue = 5/3;
   
-  SpacePlace sp = new SpacePlace();
+  Guess gs = new Guess();
   PictureFrame pf = new PictureFrame(this);
 
   private void generateDominoes() {
@@ -58,22 +58,6 @@ public class Main {
     }
   }
 
-  private void generateGuesses() {
-    _g = new LinkedList<Domino>();
-    int count = 0;
-    for (int l = 0; l <= 6; l++) {
-      for (int h = l; h <= 6; h++) {
-        Domino d = new Domino(h, l);
-        _g.add(d);
-        count++;
-      }
-    }
-    if (count != 28) {
-      System.out.println("something went wrong generating dominoes");
-      System.exit(0);
-    }
-  }
-
   void collateGrid() {
     for (Domino d : _d) {
       if (!d.placed) {
@@ -86,39 +70,11 @@ public class Main {
     }
   }
 
-  void collateGuessGrid() {
-    for (int r = 0; r < 7; r++) {
-      for (int c = 0; c < 8; c++) {
-        gg[r][c] = 9;
-      }
-    }
-    for (Domino d : _g) {
-      if (d.placed) {
-        gg[d.hy][d.hx] = d.high;
-        gg[d.ly][d.lx] = d.low;
-      }
-    }
-  }
-
   int pg() {
     for (int are = 0; are < 7; are++) {
       for (int see = 0; see < 8; see++) {
         if (grid[are][see] != 9) {
           System.out.printf("%d", grid[are][see]);
-        } else {
-          System.out.print(".");
-        }
-      }
-      System.out.println();
-    }
-    return 11;
-  }
-
-  int printGuessGrid() {
-    for (int are = 0; are < 7; are++) {
-      for (int see = 0; see < 8; see++) {
-        if (gg[are][see] != 9) {
-          System.out.printf("%d", gg[are][see]);
         } else {
           System.out.print(".");
         }
@@ -237,24 +193,6 @@ public class Main {
     return null;
   }
 
-  private Domino findGuessAt(int x, int y) {
-    for (Domino d : _g) {
-      if ((d.lx == x && d.ly == y) || (d.hx == x && d.hy == y)) {
-        return d;
-      }
-    }
-    return null;
-  }
-
-  private Domino findGuessByLH(int x, int y) {
-    for (Domino d : _g) {
-      if ((d.low == x && d.high == y) || (d.high == x && d.low == y)) {
-        return d;
-      }
-    }
-    return null;
-  }
-
   private Domino findDominoByLH(int x, int y) {
     for (Domino d : _d) {
       if ((d.low == x && d.high == y) || (d.high == x && d.low == y)) {
@@ -266,12 +204,6 @@ public class Main {
 
   private void printDominoes() {
     for (Domino d : _d) {
-      System.out.println(d);
-    }
-  }
-
-  private void printGuesses() {
-    for (Domino d : _g) {
       System.out.println(d);
     }
   }
@@ -373,8 +305,8 @@ public class Main {
         }
         collateGrid();
         pg();
-        generateGuesses();
-        collateGuessGrid();
+        gs.generateGuesses(_g);
+        gs.collateGuessGrid(_g);
         mode = 1;
         cf = 0;
         score = 0;
@@ -416,11 +348,11 @@ public class Main {
             pg();
             break;
           case 2:
-            printGuessGrid();
+            gs.printGuessGrid();
             break;
           case 3:
             Collections.sort(_g);
-            printGuesses();
+            gs.printGuesses(_g);
             break;
           case 4:
             System.out.println("Where will the top left of the domino be?");
@@ -473,7 +405,7 @@ public class Main {
                   .println("Problems placing the domino with that position and direction");
             } else {
               // find which domino this could be
-              Domino d = findGuessByLH(grid[y][x], grid[y2][x2]);
+              Domino d = gs.findGuessByLH(grid[y][x], grid[y2][x2],_g);
               if (d == null) {
                 System.out.println("There is no such domino");
                 break;
@@ -498,7 +430,7 @@ public class Main {
                 d.place(x2, y2, x, y);
               }
               score += 1000;
-              collateGuessGrid();
+              gs.collateGuessGrid(_g);
               pf.dp.repaint();
             }
             break;
@@ -527,7 +459,7 @@ public class Main {
             }
             x13--;
             y13--;
-            Domino lkj = findGuessAt(x13, y13);
+            Domino lkj = gs.findGuessAt(x13, y13,_g);
             if (lkj == null) {
               System.out.println("Couln't find a domino there");
             } else {
@@ -535,7 +467,7 @@ public class Main {
               gg[lkj.hy][lkj.hx] = 9;
               gg[lkj.ly][lkj.lx] = 9;
               score -= 1000;
-              collateGuessGrid();
+              gs.collateGuessGrid(_g);
               pf.dp.repaint();
             }
             break;
@@ -656,8 +588,8 @@ public class Main {
               HashMap<Domino, List<Location>> map = new HashMap<Domino, List<Location>>();
               for (int r = 0; r < 6; r++) {
                 for (int c = 0; c < 7; c++) {
-                  Domino hd = findGuessByLH(grid[r][c], grid[r][c + 1]);
-                  Domino vd = findGuessByLH(grid[r][c], grid[r + 1][c]);
+                  Domino hd = gs.findGuessByLH(grid[r][c], grid[r][c + 1],_g);
+                  Domino vd = gs.findGuessByLH(grid[r][c], grid[r + 1][c],_g);
                   List<Location> l = map.get(hd);
                   if (l == null) {
                     l = new LinkedList<Location>();
@@ -688,8 +620,8 @@ public class Main {
               HashMap<Domino, List<Location>> map = new HashMap<Domino, List<Location>>();
               for (int r = 0; r < 6; r++) {
                 for (int c = 0; c < 7; c++) {
-                  Domino hd = findGuessByLH(grid[r][c], grid[r][c + 1]);
-                  Domino vd = findGuessByLH(grid[r][c], grid[r + 1][c]);
+                  Domino hd = gs.findGuessByLH(grid[r][c], grid[r][c + 1],_g);
+                  Domino vd = gs.findGuessByLH(grid[r][c], grid[r + 1][c],_g);
                   List<Location> l = map.get(hd);
                   if (l == null) {
                     l = new LinkedList<Location>();
