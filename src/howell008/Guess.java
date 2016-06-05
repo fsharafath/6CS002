@@ -6,14 +6,15 @@ import java.util.List;
 public class Guess {
 	
 	public int[][] gg = new int[7][8];
+	public List<Domino> _g;
 	
-	public void printGuesses(List<Domino> _g) {
+	public void printGuesses() {
 	    for (Domino d : _g) {
 	      System.out.println(d);
 	    }
 	  }
 	
-	 public Domino findGuessAt(int x, int y,List<Domino> _g) {
+	 public Domino findGuessAt(int x, int y) {
 		    for (Domino d : _g) {
 		      if ((d.lx == x && d.ly == y) || (d.hx == x && d.hy == y)) {
 		        return d;
@@ -22,7 +23,7 @@ public class Guess {
 		    return null;
 		  }
 	 
-	  public Domino findGuessByLH(int x, int y,List<Domino> _g) {
+	  public Domino findGuessByLH(int x, int y) {
 		    for (Domino d : _g) {
 		      if ((d.low == x && d.high == y) || (d.high == x && d.low == y)) {
 		        return d;
@@ -31,7 +32,7 @@ public class Guess {
 		    return null;
 		  }
 	  
-	  public void collateGuessGrid(List<Domino> _g) {
+	  public void collateGuessGrid() {
 		    for (int r = 0; r < 7; r++) {
 		      for (int c = 0; c < 8; c++) {
 		        gg[r][c] = 9;
@@ -59,7 +60,7 @@ public class Guess {
 		    return 11;
 		  }
 	  
-	  public void generateGuesses(List<Domino> _g) {
+	  public void generateGuesses() {
 		    _g = new LinkedList<Domino>();
 		    int count = 0;
 		    for (int l = 0; l <= 6; l++) {
