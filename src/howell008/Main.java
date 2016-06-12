@@ -2,10 +2,8 @@ package howell008;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.*;
-import java.net.InetAddress;
 import java.text.DateFormat;
 import java.util.*;
-
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -231,10 +229,8 @@ public class Main {
       System.out.println(h1);
       System.out.println(u1);
       System.out.println("1) Play");
-      // System.out.println("1) Single player play");
       System.out.println("2) View high scores");
       System.out.println("3) View rules");
-      // System.out.println("4) Multiplayer play");
       System.out.println("5) Get inspiration");
       System.out.println("0) Quit");
 
@@ -341,7 +337,6 @@ public class Main {
           }
           switch (c3) {
           case 0:
-
             break;
           case 1:
             pg();
@@ -702,7 +697,7 @@ public class Main {
         try {
           DateFormat ft = DateFormat.getDateInstance(DateFormat.LONG);
           BufferedReader readfile = new BufferedReader(new FileReader(f));
-          while (ConValue == 1) {
+          while ( ConValue == 1) {
             String lin = readfile.readLine();
             if (lin == null || lin.length() == 0)
               break;
@@ -742,15 +737,8 @@ public class Main {
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         break;
-
+      	}
       }
-      case 4:
-        System.out
-            .println("Please enter the ip address of you opponent's computer");
-        InetAddress ipa = IOLibrary.getIPAddress();
-        new ConnectionGenius(ipa).fireUpGame();
-      }
-
     }
 
   }
