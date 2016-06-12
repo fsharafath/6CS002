@@ -31,5 +31,7 @@ public class ConnectionGenius {
   public void awayWeGo(){
     System.out.println("Ready to play");
   }
+  
+  /*No Use of this Class */
 
 }
