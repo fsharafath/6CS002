@@ -12,8 +12,6 @@ import static org.junit.Assert.*;
 import howell008.Decision;
 import howell008.Main;
 
-
-
 public class DecisionTest {
 	Decision decision = new Decision();
 
