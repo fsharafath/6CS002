@@ -90,11 +90,6 @@ public class DecisionTest {
 		decision.unplaceDomino(main);
 	}
 
-	@Test
-	public void placeDomino() {
-		Main main = new Main();
-		decision.placeDomino(main);
-	}
 	
 	@Test
 	public void exit() {
